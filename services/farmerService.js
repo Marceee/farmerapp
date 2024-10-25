@@ -3,8 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getAccessToken} from './authService';
 
 export const fetchFarmers = async () => {
-  const accessToken = await AsyncStorage.getItem('accessToken');
-  console.log('ACC token' , accessToken);
+  const accessToken = await getAccessToken();
   try {
     const response = await axios.get('https://test.profiles.symos.asigmagroup.com/api/v1/farmers', {
       headers: {
@@ -41,8 +40,7 @@ export const createFarmer = async (data) => {
 
 export const createManyFarmers = async (data) => {
   console.log('to submitfdgghdjjej',JSON.stringify(data));
-  const accessToken = await AsyncStorage.getItem('accessToken');
-  console.log('GET TOKEN ', accessToken);
+  const accessToken = await getAccessToken();
   try {
     const response = await axios.post('https://test.profiles.symos.asigmagroup.com/api/v1/farmers/bulk', JSON.stringify(data), {
       headers: {
