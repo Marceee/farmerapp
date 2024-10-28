@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCalendarAlt, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Avatar } from 'react-native-elements';
-import { fetchFarmers } from '../services/farmerService';
+import React, {useState, useEffect} from 'react'
+import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {Avatar} from 'react-native-elements'
+import {fetchFarmers} from '../services/farmerService'
 
-export default function HomeScreen({ navigation }) {
-
-  const [farmers, setFarmers] = useState([]);
+export default function HomeScreen({navigation}) {
+  const [farmers, setFarmers] = useState([])
 
   useEffect(() => {
     const loadFarmers = async () => {
       try {
-        const farmerList = await fetchFarmers();
-        setFarmers(farmerList.data);
+        const farmerList = await fetchFarmers()
+        setFarmers(farmerList.data)
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
+    }
 
-    loadFarmers();
-  }, []);
- const date = new Date().toLocaleDateString('en-GB');
+    loadFarmers()
+  }, [])
+  const date = new Date().toLocaleDateString('en-GB')
   return (
     <View style={styles.container}>
       <View style={styles.statsCard}>
@@ -30,13 +29,28 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.number}>{farmers.length}</Text>
         </View>
         <View style={{marginTop: 15}}>
-          <Text style={{fontSize: 12, fontWeight: 'bold', alignSelf:'flex-end', marginVertical: 5}}>Last Profiled on:</Text>
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: 'bold',
+              alignSelf: 'flex-end',
+              marginVertical: 5,
+            }}>
+            Last Profiled on:
+          </Text>
           <View style={styles.date}>
-          <FontAwesomeIcon icon={faCalendarAlt} size={15} color="#fff" />
-          <Text style={{fontSize: 10, fontWeight: 'bold', color: '#fff', marginLeft: 5, }}>{date}</Text>
+            <FontAwesomeIcon icon={faCalendarAlt} size={15} color="#fff" />
+            <Text
+              style={{
+                fontSize: 10,
+                fontWeight: 'bold',
+                color: '#fff',
+                marginLeft: 5,
+              }}>
+              {date}
+            </Text>
           </View>
         </View>
-
       </View>
 
       {/*TODO: Add search bar*/}
@@ -58,16 +72,21 @@ export default function HomeScreen({ navigation }) {
               size="medium"
               squared
               title={item.firstname[0] + item.lastname[0]}
-              overlayContainerStyle={{backgroundColor: '#164c33', borderRadius: 10}}
+              overlayContainerStyle={{
+                backgroundColor: '#164c33',
+                borderRadius: 10,
+              }}
               titleStyle={{color: 'white'}}
             />
             <View style={styles.farmerDetails}>
               <Text style={styles.farmerName}>
                 {item.firstname} {item.lastname}
               </Text>
-              <FontAwesomeIcon icon={faChevronRight} style={{ alignSelf: 'center' }} />
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                style={{alignSelf: 'center'}}
+              />
             </View>
-
           </TouchableOpacity>
         )}
       />
@@ -78,7 +97,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.fabIcon}>+</Text>
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -164,7 +183,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: {width: 0, height: 3},
     shadowOpacity: 0.3,
     shadowRadius: 5,
     elevation: 5,
@@ -173,5 +192,4 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
   },
-});
-
+})

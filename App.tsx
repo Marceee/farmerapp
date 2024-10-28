@@ -1,16 +1,26 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen';
-import ProfileFarmerScreen from './screens/ProfileFarmerScreen';
-import FarmerDetailsScreen from './screens/FarmerDetailsScreen';
-import EditFarmerScreen from './screens/EditFarmerScreen';
+import React from 'react'
+import {NavigationContainer, DarkTheme} from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack'
+import HomeScreen from './screens/HomeScreen'
+import ProfileFarmerScreen from './screens/ProfileFarmerScreen'
+import FarmerDetailsScreen from './screens/FarmerDetailsScreen'
+import EditFarmerScreen from './screens/EditFarmerScreen'
 
-const Stack = createStackNavigator();
+export const MyDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: '#333333',
+    primary: '#164c33',
+    text: '#ffffff',
+  },
+}
+
+const Stack = createStackNavigator()
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ProfileFarmer" component={ProfileFarmerScreen} />
@@ -18,7 +28,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="EditFarmer" component={EditFarmerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
-export default App;
+export default App
