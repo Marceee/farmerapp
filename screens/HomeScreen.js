@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import {Avatar} from 'react-native-elements'
 import {fetchFarmers} from '../services/farmerService'
+import {Colors} from '../utils/colors';
+import PlaceHolder from '../components/PlaceHolder';
 
 export default function HomeScreen({navigation}) {
   const [farmers, setFarmers] = useState([])
@@ -68,16 +69,7 @@ export default function HomeScreen({navigation}) {
             onPress={() =>
               navigation.navigate('FarmerDetails', {farmer: item})
             }>
-            <Avatar
-              size="medium"
-              squared
-              title={item.firstname[0] + item.lastname[0]}
-              overlayContainerStyle={{
-                backgroundColor: '#164c33',
-                borderRadius: 10,
-              }}
-              titleStyle={{color: 'white'}}
-            />
+            <PlaceHolder />
             <View style={styles.farmerDetails}>
               <Text style={styles.farmerName}>
                 {item.firstname} {item.lastname}
@@ -144,16 +136,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4f4f4',
     borderRadius: 10,
     margin: 5,
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // backgroundColor: '#ffffff',
-    // borderRadius: 10,
-    // padding: 10,
-    // marginVertical: 5,
-    // overflow: 'hidden',
-    // borderColor: '#000',
-    // borderWidth:0.5,
-    // elevation: 2,
   },
   farmerName: {
     marginLeft: 10,
@@ -176,9 +158,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#2E7D32',
-    width: 60,
-    height: 60,
+    backgroundColor: Colors.primary,
+    width: 50,
+    height: 50,
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
