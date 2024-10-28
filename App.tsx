@@ -20,8 +20,17 @@ const Stack = createStackNavigator()
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer theme={DarkTheme}>
-      <Stack.Navigator initialRouteName="Home">
+    <NavigationContainer theme={MyDarkTheme}>
+      <Stack.Navigator initialRouteName="Home"
+                       screenOptions={{
+                         headerStyle: {
+                           backgroundColor: MyDarkTheme.colors.primary,
+                         },
+                         headerTintColor: MyDarkTheme.colors.text,
+                         headerTitleStyle: {
+                           fontWeight: 'bold',
+                         },
+                       }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ProfileFarmer" component={ProfileFarmerScreen} />
         <Stack.Screen name="FarmerDetails" component={FarmerDetailsScreen} />
