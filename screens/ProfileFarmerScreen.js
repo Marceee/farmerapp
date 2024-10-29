@@ -1,14 +1,30 @@
-import React from 'react'
-import {Text, TextInput, Button, ScrollView} from 'react-native' // Import Picker for gender selection
-import {Controller, useForm} from 'react-hook-form'
-import {createFarmer} from '../services/farmerService'
+import React, {useState} from 'react'
+import {Text, Button, ScrollView, StyleSheet} from 'react-native'
+import CustomTextInput from '../components/CustomTextInput'
+import {createFarmer} from '../services/auth/farmerService'
 
 export default function ProfileFarmerScreen({navigation}) {
-  const {control, handleSubmit} = useForm()
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    gender: '',
+    phoneNumber: '',
+    district: '',
+    nin: '',
+    farmerCode: '',
+    dateOfBirth: '',
+  })
 
-  const onSubmit = async data => {
+  const handleChange = (name, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+
+  const onSubmit = async () => {
     try {
-      await createFarmer()
+      await createFarmer(formData)
       navigation.goBack()
     } catch (error) {
       console.error(error)
@@ -16,127 +32,68 @@ export default function ProfileFarmerScreen({navigation}) {
   }
 
   return (
-    <ScrollView style={{padding: 20}}>
-      <Text>Profile a Farmer</Text>
-      <Controller
-        control={control}
-        name="firstName"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="First Name"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+    <ScrollView style={styles.container}>
+      <CustomTextInput
+        label="First Name"
+        value={formData.firstName}
+        onChangeText={value => handleChange('firstName', value)}
       />
 
-      <Controller
-        control={control}
-        name="lastName"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="Last Name"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="Last Name"
+        value={formData.lastName}
+        onChangeText={value => handleChange('lastName', value)}
       />
 
-      <Controller
-        control={control}
-        name="gender"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="Gender"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="Gender"
+        value={formData.gender}
+        onChangeText={value => handleChange('gender', value)}
       />
 
-      <Controller
-        control={control}
-        name="phoneNumber"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="Phone Number"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="Phone Number"
+        value={formData.phoneNumber}
+        onChangeText={value => handleChange('phoneNumber', value)}
+        keyboardType="phone-pad"
       />
 
-      <Controller
-        control={control}
-        name="district"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="District"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="District"
+        value={formData.district}
+        onChangeText={value => handleChange('district', value)}
       />
 
-      <Controller
-        control={control}
-        name="NIN"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="NIN"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="NIN"
+        value={formData.nin}
+        onChangeText={value => handleChange('nin', value)}
       />
 
-      <Controller
-        control={control}
-        name="farmerCode"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="Farmer code"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="Farmer Code"
+        value={formData.farmerCode}
+        onChangeText={value => handleChange('farmerCode', value)}
       />
 
-      <Controller
-        control={control}
-        name="dateOfBirth"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="Date of Birth (YYYY-MM-DD)"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-          />
-        )}
+      <CustomTextInput
+        label="Date of Birth (YYYY-MM-DD)"
+        value={formData.dateOfBirth}
+        onChangeText={value => handleChange('dateOfBirth', value)}
       />
 
-      <Controller
-        control={control}
-        name="phoneNumber"
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            placeholder="Phone Number"
-            value={value}
-            onChangeText={onChange}
-            style={{borderBottomWidth: 1, marginBottom: 20}}
-            keyboardType="phone-pad" // Ensures the numeric keypad appears
-          />
-        )}
-      />
-
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+      <Button title="Submit" onPress={onSubmit} />
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+})

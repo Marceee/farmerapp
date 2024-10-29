@@ -1,15 +1,15 @@
 import React from 'react'
 import {NavigationContainer, DarkTheme} from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './screens/HomeScreen'
 import ProfileFarmerScreen from './screens/ProfileFarmerScreen'
 import FarmerDetailsScreen from './screens/FarmerDetailsScreen'
 import EditFarmerScreen from './screens/EditFarmerScreen'
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faCog, faHome} from '@fortawesome/free-solid-svg-icons';
-import SettingsScreen from './screens/SettingsScreen';
-import {Colors} from './utils/colors.ts';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import {faCog, faHome} from '@fortawesome/free-solid-svg-icons'
+import SettingsScreen from './screens/SettingsScreen'
+import {Colors} from './utils/colors.ts'
 
 export const MyDarkTheme = {
   ...DarkTheme,
@@ -35,9 +35,8 @@ function HomeStack() {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-      }}
-    >
-      <Stack.Screen name="HomeMain" component={HomeScreen} />
+      }}>
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ProfileFarmer" component={ProfileFarmerScreen} />
       <Stack.Screen name="FarmerDetails" component={FarmerDetailsScreen} />
       <Stack.Screen name="EditFarmer" component={EditFarmerScreen} />
@@ -56,9 +55,8 @@ function SettingsStack() {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-      }}
-    >
-      <Stack.Screen name="SettingsMain" component={SettingsScreen} />
+      }}>
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   )
 }
@@ -67,9 +65,9 @@ const App = (): React.ReactElement => {
   return (
     <NavigationContainer theme={MyDarkTheme}>
       <Tab.Navigator
-        screenOptions={({ route }) => ({
+        screenOptions={({route}) => ({
           headerShown: false,
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({color, size}) => {
             let iconName = faHome
 
             if (route.name === 'Home') {
@@ -82,15 +80,13 @@ const App = (): React.ReactElement => {
           },
           tabBarActiveTintColor: MyDarkTheme.colors.primary,
           tabBarInactiveTintColor: Colors.background,
-          tabBarStyle: { backgroundColor: MyDarkTheme.colors.white },
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Settings"  component={SettingsStack}/>
+          tabBarStyle: {backgroundColor: MyDarkTheme.colors.white},
+        })}>
+        <Tab.Screen name="Hom" component={HomeStack} />
+        <Tab.Screen name="Set" component={SettingsStack} />
       </Tab.Navigator>
     </NavigationContainer>
   )
 }
-
 
 export default App

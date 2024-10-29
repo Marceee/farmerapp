@@ -2,25 +2,39 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import {fetchFarmers} from '../services/farmerService'
-import {Colors} from '../utils/colors';
-import PlaceHolder from '../components/PlaceHolder';
+import {Colors} from '../utils/colors'
+import PlaceHolder from '../components/PlaceHolder'
 
 export default function HomeScreen({navigation}) {
   const [farmers, setFarmers] = useState([])
 
-  useEffect(() => {
-    const loadFarmers = async () => {
-      try {
-        const farmerList = await fetchFarmers()
-        setFarmers(farmerList.data)
-      } catch (error) {
-        console.error(error)
-      }
+  const fetchFarmers = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/farmers')
+      const data = await response.json()
+      console.log('FARMERS HERE. ', data)
+      setFarmers(data)
+    } catch (error) {
+      console.error('Error fetching farmers...', error)
     }
+    // finally {
+    //   setLoading(false);
+    // }
+  }
 
-    loadFarmers()
+  useEffect(() => {
+    // const loadFarmers = async () => {
+    //   try {
+    //     const farmerList = await fetchFarmers()
+    //     setFarmers(farmerList.data)
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // }
+    //
+    fetchFarmers()
   }, [])
+
   const date = new Date().toLocaleDateString('en-GB')
   return (
     <View style={styles.container}>

@@ -1,8 +1,8 @@
-import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
-import {Colors} from '../utils/colors';
-import {Avatar} from 'react-native-elements';
+import React from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import {faUser} from '@fortawesome/free-solid-svg-icons'
+import {Colors} from '../utils/colors'
+import {Avatar} from 'react-native-elements'
 
 const PlaceHolder = () => {
   return (
@@ -20,6 +20,6 @@ const PlaceHolder = () => {
       titleStyle={{color: 'white'}}
     />
   )
-};
+}
 
 export default PlaceHolder
