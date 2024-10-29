@@ -20,11 +20,11 @@ db.run(`
     district TEXT NOT NULL,
     nin TEXT,
     code TEXT,
-    dateOfBirth TEXT NOT NULL,
+    dateOfBirth TEXT NOT NULL
   )
 `)
 
-app.post('/farmers', (req, res) => {
+app.post('/api/farmer', (req, res) => {
   const {
     firstName,
     lastName,
@@ -61,15 +61,18 @@ app.post('/farmers', (req, res) => {
 })
 
 // Define an API endpoint for retrieving all farmers
-app.get('/farmers', (req, res) => {
+app.get('/api/farmers', (req, res) => {
+  console.log('Received request to fetch farmers');
   db.all('SELECT * FROM farmers', (err, rows) => {
     if (err) {
-      res.status(500).json({error: 'Internal server error'})
+      console.error('Error fetching farmers:', err);
+      res.status(500).json({ error: 'Internal server error' });
     } else {
-      res.json({farmers: rows})
+      console.log('Fetched farmers successfully:', rows);
+      res.json({ farmers: rows });
     }
-  })
-})
+  });
+});
 
 // // Define an API endpoint for deleting a to do
 // app.delete('/farmers/:id', async (req, res) => {

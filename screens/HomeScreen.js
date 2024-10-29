@@ -10,10 +10,10 @@ export default function HomeScreen({navigation}) {
 
   const fetchFarmers = async () => {
     try {
-      const response = await fetch('http://localhost:3001/farmers')
+      const response = await fetch('http://localhost:3001/api/farmers')
       const data = await response.json()
       console.log('FARMERS HERE. ', data)
-      setFarmers(data)
+      setFarmers(data.farmers)
     } catch (error) {
       console.error('Error fetching farmers...', error)
     }

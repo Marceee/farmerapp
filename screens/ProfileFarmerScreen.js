@@ -23,13 +23,28 @@ export default function ProfileFarmerScreen({navigation}) {
   }
 
   const onSubmit = async () => {
-    try {
-      await createFarmer(formData)
+    console.log('to submit ', formData)
+
+      const response = await fetch('http://localhost:3001/farmer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ farmer: {...formData}}),
+      });
+      const data = await response.json();
+      console.log('Data:', data);
       navigation.goBack()
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  };
+
+  // const onSubmit = async () => {
+  //   try {
+  //     await createFarmer(formData)
+  //     navigation.goBack()
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   return (
     <ScrollView style={styles.container}>
