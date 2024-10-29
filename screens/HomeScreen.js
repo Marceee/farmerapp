@@ -10,32 +10,21 @@ export default function HomeScreen({navigation}) {
 
   const fetchFarmers = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/farmers')
+      const response = await fetch('http://10.0.2.2:3001/api/farmers')
       const data = await response.json()
       console.log('FARMERS HERE. ', data)
       setFarmers(data.farmers)
     } catch (error) {
       console.error('Error fetching farmers...', error)
     }
-    // finally {
-    //   setLoading(false);
-    // }
   }
 
   useEffect(() => {
-    // const loadFarmers = async () => {
-    //   try {
-    //     const farmerList = await fetchFarmers()
-    //     setFarmers(farmerList.data)
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // }
-    //
     fetchFarmers()
   }, [])
 
   const date = new Date().toLocaleDateString('en-GB')
+  console.log(farmers)
   return (
     <View style={styles.container}>
       <View style={styles.statsCard}>
@@ -86,7 +75,7 @@ export default function HomeScreen({navigation}) {
             <PlaceHolder />
             <View style={styles.farmerDetails}>
               <Text style={styles.farmerName}>
-                {item.firstname} {item.lastname}
+                {item.firstName} {item.lastName}
               </Text>
               <FontAwesomeIcon
                 icon={faChevronRight}

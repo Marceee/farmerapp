@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
-import {Text, Button, ScrollView, StyleSheet} from 'react-native'
+import {Button, ScrollView, StyleSheet} from 'react-native'
 import CustomTextInput from '../components/CustomTextInput'
-import {createFarmer} from '../services/auth/farmerService'
 
 export default function ProfileFarmerScreen({navigation}) {
   const [formData, setFormData] = useState({
@@ -25,7 +24,8 @@ export default function ProfileFarmerScreen({navigation}) {
   const onSubmit = async () => {
     console.log('to submit ', formData)
 
-      const response = await fetch('http://localhost:3001/farmer', {
+    try{
+      const response = await fetch('http://10.0.2.2:3001/api/farmer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,6 +35,11 @@ export default function ProfileFarmerScreen({navigation}) {
       const data = await response.json();
       console.log('Data:', data);
       navigation.goBack()
+    }catch (e) {
+      console.log('errorrrr.  ', e)
+    }
+
+
   };
 
   // const onSubmit = async () => {

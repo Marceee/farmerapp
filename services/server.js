@@ -1,10 +1,12 @@
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose()
 const app = express()
+const cors = require('cors');
 
 const port = 3001
 
 app.use(express.json())
+app.use(cors())
 
 // Create a new SQLite database
 const db = new sqlite3.Database('farmers.db')
@@ -25,28 +27,20 @@ db.run(`
 `)
 
 app.post('/api/farmer', (req, res) => {
-  const {
-    firstName,
-    lastName,
-    gender,
-    phoneNumber,
-    district,
-    nin,
-    code,
-    dateOfBirth,
-  } = req.body
+  const {farmer} = req.body
+  console.log('farmer to create.. ', farmer)
 
   db.run(
     'INSERT INTO farmers (firstName, lastName, gender, phoneNumber, district, nin, code, dateOfBirth) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
     [
-      firstName,
-      lastName,
-      gender,
-      phoneNumber,
-      district,
-      nin,
-      code,
-      dateOfBirth,
+      farmer.firstName,
+      farmer.lastName,
+      farmer.gender,
+      farmer.phoneNumber,
+      farmer.district,
+      farmer.nin,
+      farmer.code,
+      farmer.dateOfBirth,
     ],
     function (err) {
       if (err) {
