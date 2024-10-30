@@ -4,14 +4,14 @@ import {faUser} from '@fortawesome/free-solid-svg-icons'
 import {Colors} from '../utils/colors'
 import {Avatar} from 'react-native-elements'
 
-const PlaceHolder = () => {
+const PlaceHolder = (icon = 18, avatarSize = 'small') => {
   return (
     <Avatar
-      size="small"
+      size={icon.avatarSize}
       squared
       source={null}
       renderPlaceholderContent={
-        <FontAwesomeIcon icon={faUser} size={18} color="white" />
+        <FontAwesomeIcon icon={faUser} size={icon.iconSize} color={Colors.white} />
       }
       overlayContainerStyle={{
         backgroundColor: Colors.primary,

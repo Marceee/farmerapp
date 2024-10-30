@@ -68,18 +68,18 @@ app.get('/api/farmers', (req, res) => {
   });
 });
 
-// // Define an API endpoint for deleting a to do
-// app.delete('/farmers/:id', async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     console.log(id);
-//     await db.run('DELETE FROM farmers WHERE id = ?', id);
-//     res.json({ message: 'farmer deleted successfully' });
-//   } catch (error) {
-//     console.log('error deleting farmer', error);
-//     res.status(500).json({ message: 'Failed to delete farmer' });
-//   }
-// });
+// Define an API endpoint for deleting a to do
+app.delete('/farmer/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    await db.run('DELETE FROM farmers WHERE id = ?', id);
+    res.json({ message: 'farmer deleted successfully' });
+  } catch (error) {
+    console.log('error deleting farmer', error);
+    res.status(500).json({ message: 'Failed to delete farmer' });
+  }
+});
 
 // Start the server
 app.listen(port, () => {

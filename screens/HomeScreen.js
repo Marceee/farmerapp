@@ -72,7 +72,7 @@ export default function HomeScreen({navigation}) {
             onPress={() =>
               navigation.navigate('FarmerDetails', {farmer: item})
             }>
-            <PlaceHolder />
+            <PlaceHolder avatarSize={'small'} iconSize={18} />
             <View style={styles.farmerDetails}>
               <Text style={styles.farmerName}>
                 {item.firstName} {item.lastName}

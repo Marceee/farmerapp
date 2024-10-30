@@ -79,7 +79,7 @@ const App = (): React.ReactElement => {
             return <FontAwesomeIcon icon={iconName} size={size} color={color} />
           },
           tabBarActiveTintColor: MyDarkTheme.colors.primary,
-          tabBarInactiveTintColor: Colors.background,
+          tabBarInactiveTintColor: Colors.grey,
           tabBarStyle: {backgroundColor: MyDarkTheme.colors.white},
         })}>
         <Tab.Screen name="Hom" component={HomeStack} />
