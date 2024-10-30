@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native'
 import PlaceHolder from '../components/PlaceHolder';
-import {faUser} from '@fortawesome/free-solid-svg-icons';
+import {faPhone} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Colors} from '../utils/colors';
 
@@ -12,14 +12,14 @@ export default function FarmerDetailsScreen({route, navigation}) {
 
       <View style={{padding: 20}}>
         <View style={{flexDirection: 'row'}}>
-          <PlaceHolder avatarSize={'large'} iconSize={40} />
+          <PlaceHolder avatarSize={60} iconSize={40} />
           <View style={{marginHorizontal: 30}}>
             <Text style={{fontWeight: 'bold', fontSize:18}}>
              {farmer.firstName} {farmer.lastName}
             </Text>
             <Text>Farmer Code: {farmer.code || 'N/A'}</Text>
             <View style={{flexDirection: 'row'}}>
-              <FontAwesomeIcon icon={faUser} size={14} color={Colors.primary} />
+              <FontAwesomeIcon icon={faPhone} size={14} color={Colors.grey} />
             </View>
           </View>
         </View>

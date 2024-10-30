@@ -2,24 +2,24 @@ import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faUser} from '@fortawesome/free-solid-svg-icons'
 import {Colors} from '../utils/colors'
-import {Avatar} from 'react-native-elements'
+import {View, StyleSheet} from 'react-native';
 
-const PlaceHolder = (icon = 18, avatarSize = 'small') => {
+const PlaceHolder = ({iconSize, avatarSize}) => {
+  console.log(iconSize, avatarSize)
   return (
-    <Avatar
-      size={icon.avatarSize}
-      squared
-      source={null}
-      renderPlaceholderContent={
-        <FontAwesomeIcon icon={faUser} size={icon.iconSize} color={Colors.white} />
-      }
-      overlayContainerStyle={{
-        backgroundColor: Colors.primary,
-        borderRadius: 10,
-      }}
-      titleStyle={{color: 'white'}}
-    />
-  )
-}
+    <View style={[styles.avatar, { width: avatarSize, height: avatarSize }]}>
+      <FontAwesomeIcon icon={faUser}  size={iconSize} color={Colors.white} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  avatar: {
+    backgroundColor: Colors.primary,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default PlaceHolder
