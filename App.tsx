@@ -3,7 +3,7 @@ import {NavigationContainer, DarkTheme} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './screens/HomeScreen'
-import ProfileFarmerScreen from './screens/ProfileFarmerScreen'
+import CreateFarmerProfileScreen from './screens/CreateFarmerProfileScreen'
 import FarmerDetailsScreen from './screens/FarmerDetailsScreen'
 import EditFarmerScreen from './screens/EditFarmerScreen'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
@@ -37,7 +37,7 @@ function HomeStack() {
         },
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="ProfileFarmer" component={ProfileFarmerScreen} />
+      <Stack.Screen name="ProfileFarmer" component={CreateFarmerProfileScreen} />
       <Stack.Screen name="FarmerDetails" component={FarmerDetailsScreen} />
       <Stack.Screen name="EditFarmer" component={EditFarmerScreen} />
     </Stack.Navigator>

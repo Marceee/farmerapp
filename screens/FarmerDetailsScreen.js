@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import PlaceHolder from '../components/PlaceHolder';
 import {faPen, faPhone, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
