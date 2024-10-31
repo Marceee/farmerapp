@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native'
 import PlaceHolder from '../components/PlaceHolder';
-import {faPhone} from '@fortawesome/free-solid-svg-icons';
+import {faPen, faPhone, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Colors} from '../utils/colors';
 
@@ -14,7 +14,7 @@ export default function FarmerDetailsScreen({route, navigation}) {
         <View style={{flexDirection: 'row'}}>
           <PlaceHolder avatarSize={60} iconSize={40} />
           <View style={{marginHorizontal: 30}}>
-            <Text style={{fontWeight: 'bold', fontSize:18}}>
+            <Text style={{fontWeight: 'bold', fontSize:18, color: Colors.black}}>
              {farmer.firstName} {farmer.lastName}
             </Text>
             <Text>Farmer Code: {farmer.code || 'N/A'}</Text>
@@ -25,6 +25,9 @@ export default function FarmerDetailsScreen({route, navigation}) {
         </View>
 
         <View style={styles.card}>
+          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('EditFarmer', {farmer})}>
+            <FontAwesomeIcon icon={faPen} color="white" size={16} />
+          </TouchableOpacity>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>Gender:</Text>
             <Text style={styles.detailValue}>{farmer.gender}</Text>
@@ -44,14 +47,10 @@ export default function FarmerDetailsScreen({route, navigation}) {
             </Text>
           </View>
         </View>
-
-        <Button
-          title="Edit"
-          onPress={() => navigation.navigate('EditFarmer', {farmer})}
-        />
       </View>
 
       <TouchableOpacity style={styles.deleteButton} onPress={() => {}}>
+        <FontAwesomeIcon icon={faTrash} color="white" size={16} />
         <Text style={styles.deleteButtonText}>Delete Farmer Profile</Text>
       </TouchableOpacity>
     </View>
@@ -72,7 +71,19 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.3,
     shadowRadius: 4,
-    marginVertical: 10,
+    marginVertical: 30,
+  },
+  editButton: {
+    position: 'absolute',
+    top: -10,
+    right: -10,
+    backgroundColor: Colors.primary,
+    padding: 8,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 18,
@@ -94,6 +105,8 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
     marginHorizontal: 15,
@@ -102,5 +115,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    marginHorizontal: 10,
   },
 })
