@@ -70,7 +70,7 @@ export default function HomeScreen({navigation}) {
           <TouchableOpacity
             style={styles.farmerItem}
             onPress={() =>
-              navigation.navigate('FarmerDetails', {farmer: item})
+              navigation.navigate('Farmer Details', {farmer: item})
             }>
             <PlaceHolder avatarSize={30} iconSize={18} />
             <View style={styles.farmerDetails}>
@@ -88,7 +88,7 @@ export default function HomeScreen({navigation}) {
 
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => navigation.navigate('ProfileFarmer')}>
+        onPress={() => navigation.navigate('Profile A Farmer')}>
         <Text style={styles.fabIcon}>+</Text>
       </TouchableOpacity>
     </View>

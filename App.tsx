@@ -5,11 +5,11 @@ import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './screens/HomeScreen'
 import CreateFarmerProfileScreen from './screens/CreateFarmerProfileScreen'
 import FarmerDetailsScreen from './screens/FarmerDetailsScreen'
-import EditFarmerScreen from './screens/EditFarmerScreen'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCog, faHome} from '@fortawesome/free-solid-svg-icons'
 import SettingsScreen from './screens/SettingsScreen'
 import {Colors} from './utils/colors.ts'
+import EditFarmerProfileScreen from './screens/EditFarmerProfileScreen';
 
 export const MyDarkTheme = {
   ...DarkTheme,
@@ -37,9 +37,9 @@ function HomeStack() {
         },
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="ProfileFarmer" component={CreateFarmerProfileScreen} />
-      <Stack.Screen name="FarmerDetails" component={FarmerDetailsScreen} />
-      <Stack.Screen name="EditFarmer" component={EditFarmerScreen} />
+      <Stack.Screen name="Profile A Farmer" component={CreateFarmerProfileScreen} />
+      <Stack.Screen name="Farmer Details" component={FarmerDetailsScreen} />
+      <Stack.Screen name="Edit Farmer Details" component={EditFarmerProfileScreen} />
     </Stack.Navigator>
   )
 }
