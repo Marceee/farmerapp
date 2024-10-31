@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import {Colors} from '../utils/colors'
+import {Colors} from '../../utils/colors'
 import PlaceHolder from '../components/PlaceHolder'
 
 export default function HomeScreen({navigation}) {

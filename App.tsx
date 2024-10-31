@@ -2,14 +2,14 @@ import React from 'react'
 import {NavigationContainer, DarkTheme} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {createStackNavigator} from '@react-navigation/stack'
-import HomeScreen from './screens/HomeScreen'
-import CreateFarmerProfileScreen from './screens/CreateFarmerProfileScreen'
-import FarmerDetailsScreen from './screens/FarmerDetailsScreen'
+import HomeScreen from './src/screens/HomeScreen'
+import CreateFarmerProfileScreen from './src/screens/CreateFarmerProfileScreen'
+import FarmerDetailsScreen from './src/screens/FarmerDetailsScreen'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCog, faHome} from '@fortawesome/free-solid-svg-icons'
-import SettingsScreen from './screens/SettingsScreen'
+import SettingsScreen from './src/screens/SettingsScreen'
 import {Colors} from './utils/colors.ts'
-import EditFarmerProfileScreen from './screens/EditFarmerProfileScreen';
+import EditFarmerProfileScreen from './src/screens/EditFarmerProfileScreen';
 
 export const MyDarkTheme = {
   ...DarkTheme,
