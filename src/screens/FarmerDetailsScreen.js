@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import PlaceHolder from '../components/PlaceHolder';
 import {faPen, faPhone, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {Colors} from '../../utils/colors';
+import {Colors} from '../utils/colors';
 
 export default function FarmerDetailsScreen({route, navigation}) {
   const {farmer} = route.params

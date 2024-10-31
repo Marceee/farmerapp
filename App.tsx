@@ -8,7 +8,7 @@ import FarmerDetailsScreen from './src/screens/FarmerDetailsScreen'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCog, faHome} from '@fortawesome/free-solid-svg-icons'
 import SettingsScreen from './src/screens/SettingsScreen'
-import {Colors} from './utils/colors.ts'
+import {Colors} from './src/utils/colors.ts'
 import EditFarmerProfileScreen from './src/screens/EditFarmerProfileScreen';
 
 export const MyDarkTheme = {

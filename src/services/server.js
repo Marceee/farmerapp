@@ -28,7 +28,6 @@ db.run(`
 
 app.post('/api/farmer', (req, res) => {
   const {farmer} = req.body
-  console.log('farmer to create.. ', farmer)
 
   db.run(
     'INSERT INTO farmers (firstName, lastName, gender, phoneNumber, district, nin, code, dateOfBirth) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
@@ -56,13 +55,11 @@ app.post('/api/farmer', (req, res) => {
 
 // Define an API endpoint for retrieving all farmers
 app.get('/api/farmers', (req, res) => {
-  console.log('Received request to fetch farmers');
   db.all('SELECT * FROM farmers', (err, rows) => {
     if (err) {
       console.error('Error fetching farmers:', err);
       res.status(500).json({ error: 'Internal server error' });
     } else {
-      console.log('Fetched farmers successfully:', rows);
       res.json({ farmers: rows });
     }
   });

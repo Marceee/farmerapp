@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, TextInput, StyleSheet} from 'react-native'
-import {Colors} from '../../utils/colors'
+import {Colors} from '../utils/colors'
 
 const CustomTextInput = ({label, value, onChangeText, ...props}) => {
   return (

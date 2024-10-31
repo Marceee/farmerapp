@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {StyleSheet} from 'react-native'
 import DetailsForm from '../components/DetailsForm';
 
 export default function CreateFarmerProfileScreen({navigation}) {
@@ -32,8 +31,7 @@ export default function CreateFarmerProfileScreen({navigation}) {
         },
         body: JSON.stringify({ farmer: {...formData}}),
       });
-      const data = await response.json();
-      console.log('Data:', data);
+      await response.json();
       navigation.goBack()
     }catch (e) {
       console.log('errorrrr.  ', e)
@@ -49,11 +47,3 @@ export default function CreateFarmerProfileScreen({navigation}) {
       onSubmit={onSubmit}/>
   )
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-})

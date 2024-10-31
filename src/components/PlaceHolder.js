@@ -1,7 +1,7 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faUser} from '@fortawesome/free-solid-svg-icons'
-import {Colors} from '../../utils/colors'
+import {Colors} from '../utils/colors'
 import {View, StyleSheet} from 'react-native';
 
 const PlaceHolder = ({iconSize, avatarSize}) => {

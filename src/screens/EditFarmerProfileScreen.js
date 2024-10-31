@@ -31,7 +31,7 @@ export default function EditFarmerProfileScreen({navigation}) {
         body: JSON.stringify({ farmer: {...formData}}),
       });
       const data = await response.json();
-      console.log('Data:', data);
+      console.log('Data TO Edit:', data);
       navigation.goBack()
     }catch (e) {
       console.log('errorrrr.  ', e)

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import {Colors} from '../../utils/colors'
+import {Colors} from '../utils/colors'
 import PlaceHolder from '../components/PlaceHolder'
 
 export default function HomeScreen({navigation}) {
@@ -12,7 +12,6 @@ export default function HomeScreen({navigation}) {
     try {
       const response = await fetch('http://10.0.2.2:3001/api/farmers')
       const data = await response.json()
-      console.log('FARMERS HERE. ', data)
       setFarmers(data.farmers)
     } catch (error) {
       console.error('Error fetching farmers...', error)
@@ -24,7 +23,6 @@ export default function HomeScreen({navigation}) {
   }, [])
 
   const date = new Date().toLocaleDateString('en-GB')
-  console.log(farmers)
   return (
     <View style={styles.container}>
       <View style={styles.statsCard}>
