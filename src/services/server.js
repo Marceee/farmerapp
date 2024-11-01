@@ -66,10 +66,10 @@ app.get('/api/farmers', (req, res) => {
 });
 
 // Define an API endpoint for deleting a to do
-app.delete('/farmer/:id', async (req, res) => {
+app.delete('/api/farmer/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+    console.log('to delete farmer with id: ', id);
     await db.run('DELETE FROM farmers WHERE id = ?', id);
     res.json({ message: 'farmer deleted successfully' });
   } catch (error) {

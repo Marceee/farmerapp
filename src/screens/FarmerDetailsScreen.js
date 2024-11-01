@@ -6,6 +6,23 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Colors} from '../utils/colors';
 
 export default function FarmerDetailsScreen({route, navigation}) {
+
+  const deleteFarmer = async (id) => {
+    try {
+      const response = await fetch('http://10.0.2.2:3001/api/farmer/' + id, {
+        method: 'DELETE',
+      })
+console.log('resss', response)
+      if (response.ok) {
+        navigation.goBack();
+      } else {
+        console.error('Failed to delete farmer. Server responded with status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error deleting farmer...', error)
+    }
+  }
+
   const {farmer} = route.params
   return (
     <View style={styles.container}>
@@ -25,7 +42,7 @@ export default function FarmerDetailsScreen({route, navigation}) {
         </View>
 
         <View style={styles.card}>
-          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('EditFarmer', {farmer})}>
+          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('Edit A Farmer', {farmer})}>
             <FontAwesomeIcon icon={faPen} color="white" size={16} />
           </TouchableOpacity>
           <View style={styles.detailsContainer}>
@@ -49,7 +66,7 @@ export default function FarmerDetailsScreen({route, navigation}) {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.deleteButton} onPress={() => {}}>
+      <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteFarmer(farmer.id)}>
         <FontAwesomeIcon icon={faTrash} color="white" size={16} />
         <Text style={styles.deleteButtonText}>Delete Farmer Profile</Text>
       </TouchableOpacity>

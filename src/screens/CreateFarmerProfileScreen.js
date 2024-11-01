@@ -21,8 +21,6 @@ export default function CreateFarmerProfileScreen({navigation}) {
   }
 
   const onSubmit = async () => {
-    console.log('to submit ', formData)
-
     try{
       const response = await fetch('http://10.0.2.2:3001/api/farmer', {
         method: 'POST',

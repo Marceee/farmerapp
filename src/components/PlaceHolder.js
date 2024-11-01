@@ -5,7 +5,6 @@ import {Colors} from '../utils/colors'
 import {View, StyleSheet} from 'react-native';
 
 const PlaceHolder = ({iconSize, avatarSize}) => {
-  console.log(iconSize, avatarSize)
   return (
     <View style={[styles.avatar, { width: avatarSize, height: avatarSize }]}>
       <FontAwesomeIcon icon={faUser}  size={iconSize} color={Colors.white} />
