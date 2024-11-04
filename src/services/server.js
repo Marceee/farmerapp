@@ -65,6 +65,35 @@ app.get('/api/farmers', (req, res) => {
   });
 });
 
+
+// Define an API endpoint for updating a farmer
+app.put('/api/farmer/:id', (req, res) => {
+  const { id } = req.params;
+  const { farmer } = req.body;
+
+  db.run(
+    'UPDATE farmers SET firstName = ?, lastName = ?, gender = ?, phoneNumber = ?, district = ?, nin = ?, code = ?, dateOfBirth = ? WHERE id = ?',
+    [
+      farmer.firstName,
+      farmer.lastName,
+      farmer.gender,
+      farmer.phoneNumber,
+      farmer.district,
+      farmer.nin,
+      farmer.code,
+      farmer.dateOfBirth,
+      id,
+    ],
+    function (err) {
+      if (err) {
+        console.error('SQL error:', err.message)
+        return res
+          .status(500)
+          .json({error: 'An error occurred while updating the farmer.'})
+      }
+      res.json({message: 'Farmer updated successfully'})})
+});
+
 // Define an API endpoint for deleting a to do
 app.delete('/api/farmer/:id', async (req, res) => {
   try {
