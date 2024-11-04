@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useCallback} from 'react';
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {Colors} from '../utils/colors'
 import PlaceHolder from '../components/PlaceHolder'
+import {useFocusEffect} from '@react-navigation/native';
 
 export default function HomeScreen({navigation}) {
   const [farmers, setFarmers] = useState([])
@@ -18,9 +19,11 @@ export default function HomeScreen({navigation}) {
     }
   }
 
-  useEffect(() => {
-    fetchFarmers()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      fetchFarmers();
+    }, [])
+  );
 
   const date = new Date().toLocaleDateString('en-GB')
   return (
