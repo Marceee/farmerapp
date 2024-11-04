@@ -12,7 +12,6 @@ export default function FarmerDetailsScreen({route, navigation}) {
       const response = await fetch('http://10.0.2.2:3001/api/farmer/' + id, {
         method: 'DELETE',
       })
-console.log('resss', response)
       if (response.ok) {
         navigation.goBack();
       } else {
@@ -24,6 +23,7 @@ console.log('resss', response)
   }
 
   const {farmer} = route.params
+
   return (
     <View style={styles.container}>
 
@@ -42,7 +42,7 @@ console.log('resss', response)
         </View>
 
         <View style={styles.card}>
-          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('Edit A Farmer', {farmer})}>
+          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('Edit Farmer Details', {farmer})}>
             <FontAwesomeIcon icon={faPen} color="white" size={16} />
           </TouchableOpacity>
           <View style={styles.detailsContainer}>
@@ -51,16 +51,16 @@ console.log('resss', response)
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>Age:</Text>
-            <Text style={styles.detailValue}>{farmer.age || 34}</Text>
+            <Text style={styles.detailValue}>{farmer.age || 'N/A'}</Text>
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>District:</Text>
-            <Text style={styles.detailValue}>{farmer.district || 'Arua'}</Text>
+            <Text style={styles.detailValue}>{farmer.district || 'N/A'}</Text>
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>Gender:</Text>
             <Text style={styles.detailValue}>
-              {farmer.nin || 'GF19754433457888'}
+              {farmer.nin || 'N/A'}
             </Text>
           </View>
         </View>

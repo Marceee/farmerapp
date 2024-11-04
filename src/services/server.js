@@ -66,7 +66,7 @@ app.get('/api/farmers', (req, res) => {
 });
 
 
-// Define an API endpoint for updating a farmer
+// updating a farmer
 app.put('/api/farmer/:id', (req, res) => {
   const { id } = req.params;
   const { farmer } = req.body;
@@ -94,11 +94,11 @@ app.put('/api/farmer/:id', (req, res) => {
       res.json({message: 'Farmer updated successfully'})})
 });
 
-// Define an API endpoint for deleting a to do
+// deleting a farmer
 app.delete('/api/farmer/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('to delete farmer with id: ', id);
+
     await db.run('DELETE FROM farmers WHERE id = ?', id);
     res.json({ message: 'farmer deleted successfully' });
   } catch (error) {

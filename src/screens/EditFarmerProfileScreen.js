@@ -1,18 +1,22 @@
 import React, {useState} from 'react'
-import {StyleSheet} from 'react-native'
+import {Alert, StyleSheet, ToastAndroid} from 'react-native';
 import DetailsForm from '../components/DetailsForm';
 
-export default function EditFarmerProfileScreen({navigation}) {
+export default function EditFarmerProfileScreen({route, navigation}) {
+  const {farmer} = route.params
+
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    gender: '',
-    phoneNumber: '',
-    district: '',
-    nin: '',
-    farmerCode: '',
-    dateOfBirth: '',
+    firstName: farmer.firstName,
+    lastName: farmer.lastName,
+    gender: farmer.gender,
+    phoneNumber: farmer.phoneNumber,
+    district: farmer.district,
+    nin: farmer.nin,
+    farmerCode: farmer.code,
+    dateOfBirth: farmer.dateOfBirth,
   })
+
+
 
   const handleChange = (name, value) => {
     setFormData(prevData => ({
@@ -21,35 +25,33 @@ export default function EditFarmerProfileScreen({navigation}) {
     }))
   }
 
-  const onSubmit = async () => {
-    try{
-      const response = await fetch('http://10.0.2.2:3001/api/farmer', {
-        method: 'PATCH',
+  const onSubmit = async (id) => {
+    try {
+      const response = await fetch('http://10.0.2.2:3001/api/farmer/' + id, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ farmer: {...formData}}),
-      });
-      const data = await response.json();
-      console.log('Data TO Edit:', data);
-      navigation.goBack()
-    }catch (e) {
-      console.log('errorrrr.  ', e)
+      })
+      if (response.ok) {
+        navigation.navigate('Home');
+      } else {
+        Alert.alert(
+          'Error',
+          'Failed to delete farmer.',
+        );
+        console.error('Failed to delete farmer. Server responded with status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error deleting farmer...', error)
     }
-  };
+  }
 
   return (
     <DetailsForm
       formData={formData}
       handleChange={handleChange}
-      onSubmit={onSubmit}/>
+      onSubmit={()=>onSubmit(farmer.id)}/>
   )
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-})
