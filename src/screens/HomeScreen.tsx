@@ -1,13 +1,25 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback} from 'react'
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native'
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import {faCalendarAlt, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {Colors} from '../utils/colors'
 import PlaceHolder from '../components/PlaceHolder'
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native'
 
-export default function HomeScreen({navigation}) {
-  const [farmers, setFarmers] = useState([])
+
+interface Farmer {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
+interface HomeScreenProps {
+  navigation: any;
+}
+
+
+const HomeScreen: React.FC<HomeScreenProps> = ({navigation})=> {
+  const [farmers, setFarmers] = useState<Farmer[]>([])
 
   const fetchFarmers = async () => {
     try {
@@ -21,9 +33,9 @@ export default function HomeScreen({navigation}) {
 
   useFocusEffect(
     useCallback(() => {
-      fetchFarmers();
-    }, [])
-  );
+      fetchFarmers()
+    }, []),
+  )
 
   const date = new Date().toLocaleDateString('en-GB')
   return (
@@ -95,6 +107,8 @@ export default function HomeScreen({navigation}) {
     </View>
   )
 }
+
+export default HomeScreen
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,7 @@
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose()
 const app = express()
-const cors = require('cors');
+const cors = require('cors')
 
 const port = 3001
 
@@ -57,19 +57,18 @@ app.post('/api/farmer', (req, res) => {
 app.get('/api/farmers', (req, res) => {
   db.all('SELECT * FROM farmers', (err, rows) => {
     if (err) {
-      console.error('Error fetching farmers:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('Error fetching farmers:', err)
+      res.status(500).json({error: 'Internal server error'})
     } else {
-      res.json({ farmers: rows });
+      res.json({farmers: rows})
     }
-  });
-});
-
+  })
+})
 
 // updating a farmer
 app.put('/api/farmer/:id', (req, res) => {
-  const { id } = req.params;
-  const { farmer } = req.body;
+  const {id} = req.params
+  const {farmer} = req.body
 
   db.run(
     'UPDATE farmers SET firstName = ?, lastName = ?, gender = ?, phoneNumber = ?, district = ?, nin = ?, code = ?, dateOfBirth = ? WHERE id = ?',
@@ -91,21 +90,23 @@ app.put('/api/farmer/:id', (req, res) => {
           .status(500)
           .json({error: 'An error occurred while updating the farmer.'})
       }
-      res.json({message: 'Farmer updated successfully'})})
-});
+      res.json({message: 'Farmer updated successfully'})
+    },
+  )
+})
 
 // deleting a farmer
 app.delete('/api/farmer/:id', async (req, res) => {
   try {
-    const { id } = req.params;
+    const {id} = req.params
 
-    await db.run('DELETE FROM farmers WHERE id = ?', id);
-    res.json({ message: 'farmer deleted successfully' });
+    await db.run('DELETE FROM farmers WHERE id = ?', id)
+    res.json({message: 'farmer deleted successfully'})
   } catch (error) {
-    console.log('error deleting farmer', error);
-    res.status(500).json({ message: 'Failed to delete farmer' });
+    console.log('error deleting farmer', error)
+    res.status(500).json({message: 'Failed to delete farmer'})
   }
-});
+})
 
 // Start the server
 app.listen(port, () => {

@@ -1,4 +1,5 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Simple CRUD React Native project with local server(Express, SQLite), bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Tested and run on Android so far.
 
 # Getting Started
 
@@ -23,12 +24,14 @@ yarn start
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
 ### Run backend
+
 ```bash
 cd services
 node server.js
 ```
 
 ### For Android
+
 ```bash
 # using npm
 npm run android

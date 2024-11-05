@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import {Alert, StyleSheet, ToastAndroid} from 'react-native';
-import DetailsForm from '../components/DetailsForm';
+import {Alert, StyleSheet, ToastAndroid} from 'react-native'
+import DetailsForm from '../components/DetailsForm'
 
 export default function EditFarmerProfileScreen({route, navigation}) {
   const {farmer} = route.params
@@ -16,8 +16,6 @@ export default function EditFarmerProfileScreen({route, navigation}) {
     dateOfBirth: farmer.dateOfBirth,
   })
 
-
-
   const handleChange = (name, value) => {
     setFormData(prevData => ({
       ...prevData,
@@ -25,23 +23,23 @@ export default function EditFarmerProfileScreen({route, navigation}) {
     }))
   }
 
-  const onSubmit = async (id) => {
+  const onSubmit = async id => {
     try {
       const response = await fetch('http://10.0.2.2:3001/api/farmer/' + id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ farmer: {...formData}}),
+        body: JSON.stringify({farmer: {...formData}}),
       })
       if (response.ok) {
-        navigation.navigate('Home');
+        navigation.navigate('Home')
       } else {
-        Alert.alert(
-          'Error',
-          'Failed to delete farmer.',
-        );
-        console.error('Failed to delete farmer. Server responded with status:', response.status);
+        Alert.alert('Error', 'Failed to delete farmer.')
+        console.error(
+          'Failed to delete farmer. Server responded with status:',
+          response.status,
+        )
       }
     } catch (error) {
       console.error('Error deleting farmer...', error)
@@ -52,6 +50,7 @@ export default function EditFarmerProfileScreen({route, navigation}) {
     <DetailsForm
       formData={formData}
       handleChange={handleChange}
-      onSubmit={()=>onSubmit(farmer.id)}/>
+      onSubmit={() => onSubmit(farmer.id)}
+    />
   )
 }

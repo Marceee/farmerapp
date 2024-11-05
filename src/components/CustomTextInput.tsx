@@ -1,8 +1,19 @@
 import React from 'react'
-import {View, Text, TextInput, StyleSheet} from 'react-native'
+import {View, Text, TextInput, StyleSheet, TextInputProps} from 'react-native'
 import {Colors} from '../utils/colors'
 
-const CustomTextInput = ({label, value, onChangeText, ...props}) => {
+interface CustomTextInputProps extends TextInputProps {
+  label: string
+  value: string
+  onChangeText: (text: string) => void
+}
+
+const CustomTextInput: React.FC<CustomTextInputProps> = ({
+  label,
+  value,
+  onChangeText,
+  ...props
+}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -22,12 +33,12 @@ const styles = StyleSheet.create({
   },
   label: {
     position: 'absolute',
-    top: -10, // Position the label above the TextInput
+    top: -10,
     left: 10,
-    paddingHorizontal: 5, // Add padding around the text
+    paddingHorizontal: 5,
     fontSize: 12,
     color: Colors.primary,
-    zIndex: 1, // Bring label above border
+    zIndex: 1,
   },
   input: {
     borderWidth: 1,

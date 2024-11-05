@@ -1,21 +1,31 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
-import PlaceHolder from '../components/PlaceHolder';
-import {faPen, faPhone, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {Colors} from '../utils/colors';
+import PlaceHolder from '../components/PlaceHolder'
+import {faPen, faPhone, faTrash} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import {Colors} from '../utils/colors'
+import {NavigationProp, RouteProp} from '@react-navigation/native';
+import {FarmerFormData} from '../utils/types.ts';
 
-export default function FarmerDetailsScreen({route, navigation}) {
 
-  const deleteFarmer = async (id) => {
+interface FarmerDetailsScreenProps {
+  route: RouteProp<{ params: { farmer: FarmerFormData } }, 'params'>;
+  navigation: NavigationProp<any>;
+}
+
+const FarmerDetailsScreen: React.FC<FarmerDetailsScreenProps> = ({route, navigation} )=> {
+  const deleteFarmer = async (id: number) => {
     try {
       const response = await fetch('http://10.0.2.2:3001/api/farmer/' + id, {
         method: 'DELETE',
       })
       if (response.ok) {
-        navigation.goBack();
+        navigation.goBack()
       } else {
-        console.error('Failed to delete farmer. Server responded with status:', response.status);
+        console.error(
+          'Failed to delete farmer. Server responded with status:',
+          response.status,
+        )
       }
     } catch (error) {
       console.error('Error deleting farmer...', error)
@@ -26,15 +36,15 @@ export default function FarmerDetailsScreen({route, navigation}) {
 
   return (
     <View style={styles.container}>
-
       <View style={{padding: 20}}>
         <View style={{flexDirection: 'row'}}>
           <PlaceHolder avatarSize={60} iconSize={40} />
           <View style={{marginHorizontal: 30}}>
-            <Text style={{fontWeight: 'bold', fontSize:18, color: Colors.black}}>
-             {farmer.firstName} {farmer.lastName}
+            <Text
+              style={{fontWeight: 'bold', fontSize: 18, color: Colors.black}}>
+              {farmer.firstName} {farmer.lastName}
             </Text>
-            <Text>Farmer Code: {farmer.code || 'N/A'}</Text>
+            <Text>Farmer Code: {farmer.farmerCode || 'N/A'}</Text>
             <View style={{flexDirection: 'row'}}>
               <FontAwesomeIcon icon={faPhone} size={14} color={Colors.grey} />
             </View>
@@ -42,7 +52,11 @@ export default function FarmerDetailsScreen({route, navigation}) {
         </View>
 
         <View style={styles.card}>
-          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('Edit Farmer Details', {farmer})}>
+          <TouchableOpacity
+            style={styles.editButton}
+            onPress={() =>
+              navigation.navigate('Edit Farmer Details', {farmer})
+            }>
             <FontAwesomeIcon icon={faPen} color="white" size={16} />
           </TouchableOpacity>
           <View style={styles.detailsContainer}>
@@ -51,7 +65,7 @@ export default function FarmerDetailsScreen({route, navigation}) {
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>Age:</Text>
-            <Text style={styles.detailValue}>{farmer.age || 'N/A'}</Text>
+            <Text style={styles.detailValue}>{farmer.dateOfBirth || 'N/A'}</Text>
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>District:</Text>
@@ -59,20 +73,22 @@ export default function FarmerDetailsScreen({route, navigation}) {
           </View>
           <View style={styles.detailsContainer}>
             <Text style={styles.detailLabel}>Gender:</Text>
-            <Text style={styles.detailValue}>
-              {farmer.nin || 'N/A'}
-            </Text>
+            <Text style={styles.detailValue}>{farmer.nin || 'N/A'}</Text>
           </View>
         </View>
       </View>
 
-      <TouchableOpacity style={styles.deleteButton} onPress={()=>deleteFarmer(farmer.id)}>
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => deleteFarmer(farmer.id)}>
         <FontAwesomeIcon icon={faTrash} color="white" size={16} />
         <Text style={styles.deleteButtonText}>Delete Farmer Profile</Text>
       </TouchableOpacity>
     </View>
   )
 }
+
+export default FarmerDetailsScreen
 
 const styles = StyleSheet.create({
   container: {
